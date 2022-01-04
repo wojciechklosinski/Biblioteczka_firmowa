@@ -7,6 +7,7 @@ gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
 
 gem 'bootsnap',   '1.7.2', require: false
+gem 'bootstrap-sass', '3.4.1'
 gem 'jbuilder',   '2.10.0'
 gem 'puma',       '5.3.1'
 gem 'rails',      '6.1.4.1'

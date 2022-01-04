@@ -6,6 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
 
+gem 'bcrypt',         '3.1.13'
 gem 'bootsnap',   '1.7.2', require: false
 gem 'bootstrap-sass', '3.4.1'
 gem 'jbuilder',   '2.10.0'

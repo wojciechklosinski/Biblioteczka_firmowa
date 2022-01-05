@@ -15,6 +15,6 @@
     <% end %>
 
     <p>Nowy użytkownik? <%= link_to "Zarejestruj się", signup_path %></p>
-    <p>Zaloguj się za pomocą konta Google: <%= link_to "Zaloguj się!", "#" %></p>
+    <p>Zaloguj się za pomocą konta Google: <%= link_to "Zaloguj się", '/auth/google_oauth2', method: :post %></p>
   </div>
 </div>

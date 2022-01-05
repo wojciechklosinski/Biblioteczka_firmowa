@@ -22,7 +22,8 @@ class SessionsController < ApplicationController
   def omniauth
     user = User.from_omniauth(auth)
     user.save
-    session[:user_id] = user.id
+    reset_session
+    log_in user
     redirect_to user
   end
 

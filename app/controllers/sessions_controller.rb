@@ -19,6 +19,7 @@ class SessionsController < ApplicationController
     redirect_to root_url
   end
   
+  # Zalogowanie lub stworzenie użytkownika z danymi pobranymi z konta google.
   def omniauth
     user = User.from_omniauth(auth)
     user.save

@@ -20,4 +20,19 @@ class BookTest < ActiveSupport::TestCase
     assert_not @book.valid?
   end
 
+  test "author should not be too long" do
+    @book.author = "a" * 51
+    assert_not @book.valid?
+  end
+
+  test "title should not be too long" do
+    @book.title = "a" * 101 
+    assert_not @book.valid?
+  end
+
+  test "title should be unique" do
+    duplicate_book = @book.dup
+    @book.save
+    assert_not duplicate_book.valid?
+  end
 end

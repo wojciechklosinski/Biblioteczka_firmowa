@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       reset_session
+      remember user
       log_in user
       redirect_to user
     else
@@ -24,6 +25,7 @@ class SessionsController < ApplicationController
     user = User.from_omniauth(auth)
     user.save
     reset_session
+    remember user
     log_in user
     redirect_to user
   end

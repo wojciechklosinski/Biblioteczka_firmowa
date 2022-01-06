@@ -8,7 +8,9 @@
     </section>
     <p>
 	  Autor: <%= @book.author  %> <br>
+	<% unless @book.description.empty? %>
 	  Opis:  <%= @book.description %>
+	<% end %>
 	</p>	
   </aside>
 </div>

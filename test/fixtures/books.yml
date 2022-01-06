@@ -1,11 +1,4 @@
-# # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-# one:
-#   title: MyString
-#   description: MyText
-#   author: MyString
-
-# two:
-#   title: MyString
-#   description: MyText
-#   author: MyString
+biblia:
+  title: Biblia
+  description: Księga o Bogu
+  author: Duch Święty

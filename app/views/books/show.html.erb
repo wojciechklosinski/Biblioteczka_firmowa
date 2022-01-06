@@ -1,2 +1,14 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<% provide(:title, @book.title) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= "\"#{@book.title}\"" %>
+      </h1>
+	  <p>
+	  	<%= @book.author  %> <br>
+	  	<%= @book.description %>
+	  </p>	   
+    </section>
+  </aside>
+</div>

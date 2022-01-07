@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
 
   before_action :logged_in_user, only: [:edit, :update, :create, :show]
- 
+
   def new
     @book = Book.new
   end

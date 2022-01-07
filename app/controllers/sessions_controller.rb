@@ -5,10 +5,11 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
+      forwarding_url = session[:forwarding_url]     
       reset_session
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       log_in user
-      redirect_to user
+      redirect_to forwarding_url || user
     else
       flash.now[:danger] = 'Niepoprawny email bądź hasło.'
       render 'new'
@@ -22,12 +23,13 @@ class SessionsController < ApplicationController
   
   # Zalogowanie lub stworzenie użytkownika z danymi pobranymi z konta google.
   def omniauth
+      forwarding_url = session[:forwarding_url]   
       user = User.from_omniauth(auth)
       user.save
       reset_session
       remember(user)
       log_in user
-      redirect_to user
+      redirect_to forwarding_url || user
   end
 
   private

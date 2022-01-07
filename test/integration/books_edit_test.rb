@@ -18,9 +18,9 @@ class BooksEditTest < ActionDispatch::IntegrationTest
   end
 
   test "successful book edit" do
-    log_in_as(@user)
     get edit_book_path(@book)
-    assert_template 'books/edit'
+    log_in_as(@user)
+    assert_redirected_to edit_book_path(@book)
     patch book_path(@book), params: { book: { title:  "Książka",
                                          author: "Wojtas",
                                          description: "cokolwiek"        } }

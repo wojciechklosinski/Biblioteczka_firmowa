@@ -4,6 +4,8 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
 
   def setup
     @book = books(:biblia)
+    @user = users(:michael)
+    @other_user = users(:archer)
   end
 
   test "should redirect edit when not logged in" do
@@ -31,5 +33,4 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
     assert_redirected_to login_url
   end
-
 end

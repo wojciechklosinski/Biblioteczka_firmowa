@@ -7,12 +7,7 @@ Sortuj alfabetycznie po: <br>
 <%= will_paginate %>
 
 <ul class="books">
-  <% @books.each do |book| %>
-    <li>
-      Tytuł: <%= "\"#{book.title}\"" %>  <br>
-	  Autor: <%= book.author  %> 
-    </li>
-  <% end %>
+  <%= render @books %>
 </ul>
 
 <%= will_paginate %>

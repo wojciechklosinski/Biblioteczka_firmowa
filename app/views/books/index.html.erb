@@ -1,6 +1,10 @@
 <% provide(:title, 'Spis książek') %>
 <h1>Spis książek</h1>
 
+Sortuj alfabetycznie po: <br> 
+<%= link_to "tytule", books_path(order: 'title'), class: "button" %> 
+<%= link_to "autorze", books_path(order: 'author'), class: "button" %><br><br>
+
 <ul class="books">
   <% @books.each do |book| %>
     <li>

@@ -1,4 +1,7 @@
 class BooksController < ApplicationController
+
+  before_action :logged_in_user, only: [:edit, :update, :create, :show]
+
   def new
     @book = Book.new
   end
@@ -15,7 +18,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(book_params)    # Not the final implementation!
+    @book = Book.new(book_params)   
     if @book.save
       flash[:success] = "Książka została dodana."
       redirect_to @book
@@ -39,4 +42,5 @@ class BooksController < ApplicationController
     def book_params
       params.require(:book).permit(:title, :author, :description)
     end
+
 end

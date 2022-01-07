@@ -3,9 +3,11 @@ require "test_helper"
 class BooksEditTest < ActionDispatch::IntegrationTest
   def setup
     @book = books(:biblia)
+    @user = users(:michael)    
   end
 
   test "unsuccessful book edit" do
+    log_in_as(@user)
     get edit_book_path(@book)
     assert_template 'books/edit'
     patch book_path(@book), params: { book: { title:  "",
@@ -16,6 +18,7 @@ class BooksEditTest < ActionDispatch::IntegrationTest
   end
 
   test "successful book edit" do
+    log_in_as(@user)
     get edit_book_path(@book)
     assert_template 'books/edit'
     patch book_path(@book), params: { book: { title:  "Książka",

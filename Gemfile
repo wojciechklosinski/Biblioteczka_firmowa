@@ -11,6 +11,8 @@ gem 'dotenv-rails'
 gem 'omniauth'
 gem 'omniauth-rails_csrf_protection'
 gem 'faker',          '2.11.0'
+gem 'will_paginate',           '3.3.0'
+gem 'bootstrap-will_paginate', '1.0.0'
 
 gem 'bcrypt',         '3.1.13'
 gem 'bootsnap',   '1.7.2', require: false

@@ -2,3 +2,25 @@ biblia:
   title: Biblia
   description: Księga o Bogu
   author: Duch Święty
+
+tora:
+  title: Tora
+  description: Chyba żydowska
+  author: Żyd
+
+<% 30.times do |n| %>
+book_<%= n %>:
+  title:  <%= "Księga #{n}" %>
+  description: nie ma
+  author: Pan
+<% end %>
+
+testowa:
+  title: Autentyczna ksiazka
+  description: cokolwiek
+  author: Zly autor
+
+testowa2:
+  title: Zla ksiazka
+  description: cokolwiek
+  author: Autentyczny autor

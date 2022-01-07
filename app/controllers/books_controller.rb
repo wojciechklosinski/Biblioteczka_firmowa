@@ -11,14 +11,14 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all.order(:title)
+    @books = Book.order('title').paginate(page: params[:page], per_page: 10)
 
     if params[:order] == 'title'
-        @books = Book.all.order('title')
+        @books = Book.order('title').paginate(page: params[:page], per_page: 10)
     elsif params[:order] == 'author'
-        @books = Book.all.order('author')
+        @books = Book.order('author').paginate(page: params[:page], per_page: 10)
     else
-        @books = Book.all.order(:title)
+        @books = Book.paginate(page: params[:page], per_page: 10)
     end
   end
 

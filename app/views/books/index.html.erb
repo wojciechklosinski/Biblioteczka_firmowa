@@ -3,7 +3,8 @@
 
 Sortuj alfabetycznie po: <br> 
 <%= link_to "tytule", books_path(order: 'title'), class: "button" %> 
-<%= link_to "autorze", books_path(order: 'author'), class: "button" %><br><br>
+<%= link_to "autorze", books_path(order: 'author'), class: "button" %><br>
+<%= will_paginate %>
 
 <ul class="books">
   <% @books.each do |book| %>
@@ -13,3 +14,5 @@ Sortuj alfabetycznie po: <br>
     </li>
   <% end %>
 </ul>
+
+<%= will_paginate %>

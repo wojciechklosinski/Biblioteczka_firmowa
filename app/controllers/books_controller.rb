@@ -1,6 +1,13 @@
 class BooksController < ApplicationController
 
-  before_action :logged_in_user, only: [:edit, :update, :create, :show]
+  before_action :logged_in_user, only: [:edit, :update, :create, :show, :destroy]
+  before_action :admin_user,     only: :destroy
+
+  def destroy
+    Book.find(params[:id]).destroy
+    flash[:success] = "Książka została usunięta."
+    redirect_to books_url
+  end
 
   def new
     @book = Book.new

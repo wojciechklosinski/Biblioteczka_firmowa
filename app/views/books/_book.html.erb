@@ -1,4 +1,10 @@
     <li>
       Tytuł: <%= "\"#{book.title}\"" %>  <br>
-	    Autor: <%= book.author  %> 
+	    Autor: <%= book.author  %> <br>
+      <% if logged_in? && current_user.admin? %>
+          | <%= link_to "usuń", book, method: :delete,
+                                        data: { confirm: "You sure?" } %>
+          | <%= link_to "edytuj", edit_book_path(book) %> |
+
+      <% end %>  
     </li>

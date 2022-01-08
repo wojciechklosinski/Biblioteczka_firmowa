@@ -5,6 +5,6 @@
           | <%= link_to "usuń", book, method: :delete,
                                         data: { confirm: "You sure?" } %>
           | <%= link_to "edytuj", edit_book_path(book) %> |
-
       <% end %>  
+      <%= link_to "szczegóły", book_path(book) %>
     </li>

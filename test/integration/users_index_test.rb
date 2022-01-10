@@ -13,6 +13,8 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     assert_template 'users/index'
     #assert_select 'div.pagination'
     get balance_reset_path(user_id: @user2.id)
-    #assert_match @user2.balance , "20"
+    assert_redirected_to users_path
+    @user2.reload
+    assert_equal @user2.balance , 0
   end
 end

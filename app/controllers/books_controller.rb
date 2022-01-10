@@ -24,6 +24,10 @@ class BooksController < ApplicationController
         @books = Book.order('title').paginate(page: params[:page], per_page: 10)
     elsif params[:order] == 'author'
         @books = Book.order('author').paginate(page: params[:page], per_page: 10)
+    elsif params[:order] == 'price_mal'
+        @books = Book.order('price DESC').paginate(page: params[:page], per_page: 10)
+    elsif params[:order] == 'price_ros'
+        @books = Book.order('price').paginate(page: params[:page], per_page: 10)
     else
         @books = Book.paginate(page: params[:page], per_page: 10)
     end
@@ -56,7 +60,7 @@ class BooksController < ApplicationController
   private
 
     def book_params
-      params.require(:book).permit(:title, :author, :description)
+      params.require(:book).permit(:title, :author, :description, :price, :content)
     end
 
 end

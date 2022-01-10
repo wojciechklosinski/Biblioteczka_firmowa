@@ -3,7 +3,7 @@ require "test_helper"
 class BookTest < ActiveSupport::TestCase
 
   def setup
-    @book = Book.new(title: "Lorem ipsum", description: "Bardzo ciekawa książka.", author: "Wojtas")
+    @book = Book.new(title: "Lorem ipsum", description: "Bardzo ciekawa książka.", author: "Wojtas", price: 2, content: "Zawartość")
   end
 
   test "should be valid" do
@@ -17,6 +17,11 @@ class BookTest < ActiveSupport::TestCase
 
   test "author should be present" do
     @book.author = "   "
+    assert_not @book.valid?
+  end
+
+  test "content should be present" do
+    @book.content = "   "
     assert_not @book.valid?
   end
 
@@ -34,5 +39,10 @@ class BookTest < ActiveSupport::TestCase
     duplicate_book = @book.dup
     @book.save
     assert_not duplicate_book.valid?
+  end
+
+  test "price should be greater than -1" do
+    @book.price = -1 
+    assert_not @book.valid?
   end
 end

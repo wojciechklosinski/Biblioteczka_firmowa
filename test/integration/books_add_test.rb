@@ -12,7 +12,9 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_no_difference 'Book.count' do
       post books_path, params: { book: { title:  "",
                                          author: "",
-                                         description: ""        } }
+                                         description: "",
+                                         price: -2,
+                                         content: ""        } }
     end
     assert_template 'books/new'
     assert_select 'div#error_explanation'
@@ -25,7 +27,9 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_difference 'Book.count',1 do
       post books_path, params: { book: { title:  "Ciekawa księga",
                                          author: "Wojtek",
-                                         description: "O losie ale dobra."        } }
+                                         description: "O losie ale dobra.",
+                                         price: 2,
+                                         content: "Zawartość"        } }
     end
     follow_redirect!
     assert_template 'books/show'

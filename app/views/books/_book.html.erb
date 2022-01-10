@@ -1,6 +1,7 @@
     <li>
       Tytuł: <%= "\"#{book.title}\"" %>  <br>
 	    Autor: <%= book.author  %> <br>
+      Cena: <%= book.price  %> zł<br>
       <% if logged_in? && current_user.admin? %>
           | <%= link_to "usuń", book, method: :delete,
                                         data: { confirm: "You sure?" } %>

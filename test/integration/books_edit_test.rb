@@ -12,7 +12,9 @@ class BooksEditTest < ActionDispatch::IntegrationTest
     assert_template 'books/edit'
     patch book_path(@book), params: { book: { title:  "",
                                          author: "",
-                                         description: ""        } }
+                                         description: "",
+                                         price: -1,
+                                         content: ""        } }
 
     assert_template 'books/edit'
   end
@@ -23,7 +25,9 @@ class BooksEditTest < ActionDispatch::IntegrationTest
     assert_redirected_to edit_book_path(@book)
     patch book_path(@book), params: { book: { title:  "Książka",
                                          author: "Wojtas",
-                                         description: "cokolwiek"        } }
+                                         description: "cokolwiek",
+                                         price: 2,
+                                         content: "Zawartość"        } }
 
     assert_not flash.empty?
     assert_redirected_to @book

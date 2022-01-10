@@ -3,7 +3,13 @@
 
 Sortuj alfabetycznie po: <br> 
 <%= link_to "tytule", books_path(order: 'title'), class: "button" %> 
-<%= link_to "autorze", books_path(order: 'author'), class: "button" %><br>
+<%= link_to "autorze", books_path(order: 'author'), class: "button" %><br><br>
+
+Sortuj po cenie: <br> 
+<%= link_to "malejąco", books_path(order: 'prrice_mal'), class: "button" %>
+<%= link_to "rosnąco", books_path(order: 'price_ros'), class: "button" %><br> 
+
+
 <%= will_paginate %>
 
 <ul class="books">

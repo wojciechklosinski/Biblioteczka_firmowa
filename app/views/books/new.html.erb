@@ -24,7 +24,13 @@
       <%= f.text_field :author, class: 'form-control' %>
 
       <%= f.label :description, "Opis"  %>
-      <%= f.text_field :description, class: 'form-control' %>
+      <%= f.text_area :description, class: 'form-control' %>
+
+      <%= f.label :price, "Cena książki"  %>
+      <%= f.text_field :price, class: 'form-control' %>
+
+      <%= f.label :content, "Zawartość książki"  %>
+      <%= f.text_area :content, class: "field", placeholder: "Witam w mojej książce..." %>
 
       <%= f.submit "Dodaj książkę", class: "btn btn-primary" %>
     <% end %>

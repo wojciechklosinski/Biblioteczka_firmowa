@@ -8,7 +8,7 @@
     </section>
     <p>
 	  Autor: <%= @book.author  %> <br>
-    Cena: <%= @book.price %> <br><br>
+    Cena wypożyczenia za 1 dzień: <%= @book.price %> zł<br><br>
 	<% unless @book.description.empty? %>
 	  Opis:  <%= @book.description %>
 	<% end %>

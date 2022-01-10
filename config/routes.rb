@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
 
 
+  get '/balance_reset', to: 'users#balance_reset'
   #get 'sessions/new'
   root   'static_pages#home'
 

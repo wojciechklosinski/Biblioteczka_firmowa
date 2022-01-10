@@ -1,0 +1,19 @@
+<% provide(:title, 'Wszyscy użytkownicy') %>
+<h1>Wszyscy użytkownicy</h1>
+
+<%= will_paginate %>
+
+<ul class="users">
+  <% @users.each do |user| %>
+    <li>
+      <%= user.name %><br>
+      <%= user.id %><br>
+      Saldo użytkownika: <%= user.balance %>zł <br>
+      
+      <%= link_to "Resetuj saldo", balance_reset_path(user_id: user.id),data: { confirm: "Jesteś pewien?" }  %>
+      
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate %>

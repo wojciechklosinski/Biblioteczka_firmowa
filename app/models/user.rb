@@ -56,4 +56,8 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
 
+  #change balance value back to 0
+  def reset_balance
+    update_attribute(:balance, 0)
+  end
 end

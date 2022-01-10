@@ -8,6 +8,7 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :balance, presence: true,  numericality: { greater_than_or_equal_to: 0 }
   has_secure_password
 
   # Returns the hash digest of the given string.

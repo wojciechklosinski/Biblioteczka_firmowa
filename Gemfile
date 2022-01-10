@@ -14,6 +14,10 @@ gem 'faker',          '2.11.0'
 gem 'will_paginate',           '3.3.0'
 gem 'bootstrap-will_paginate', '1.0.0'
 
+gem 'active_storage_validations'
+gem 'mini_magick'
+gem 'image_processing'
+
 gem 'bcrypt',         '3.1.13'
 gem 'bootsnap',   '1.7.2', require: false
 gem 'bootstrap-sass', '3.4.1'

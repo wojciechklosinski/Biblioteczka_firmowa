@@ -7,8 +7,18 @@
       </h1>   
     </section>
     <p>
-	  Autor: <%= @book.author  %> <br>
+
+    <% if @book.image.attached? %>
+
+      <!-- Wiem, że to powinno być tak ale obraz się nie wyświetla wtedy :)
+      <%= image_tag @book.image.variant(resize: "320x495") %> -->
+
+        <%= image_tag @book.image, style: "width:200px" if @book.image.attached?  %>
+    <% end %>
+    <br>
+    Autor: <%= @book.author  %> <br>
     Cena wypożyczenia za 1 dzień: <%= @book.price %> zł<br><br>
+
 	<% unless @book.description.empty? %>
 	  Opis:  <%= @book.description %>
 	<% end %>

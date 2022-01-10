@@ -32,6 +32,10 @@
       <%= f.label :content, "Zawartość książki"  %>
       <%= f.text_area :content, class: "field", placeholder: "Witam w mojej książce..." %>
 
+      <span class="image">
+        <%= f.file_field :image, accept: "image/jpeg,image/png" %>
+      </span>
+
       <%= f.submit "Dodaj książkę", class: "btn btn-primary" %>
     <% end %>
   </div>

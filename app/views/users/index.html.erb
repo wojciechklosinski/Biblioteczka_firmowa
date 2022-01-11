@@ -7,7 +7,6 @@
   <% @users.each do |user| %>
     <li>
       <%= user.name %><br>
-      <%= user.id %><br>
       Saldo użytkownika: <%= user.balance %>zł <br>
       
       <%= link_to "Resetuj saldo", users_path(user_id: user.id),data: { confirm: "Jesteś pewien?" }  %>

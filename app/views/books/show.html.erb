@@ -13,15 +13,50 @@
       <!-- Wiem, że to powinno być tak ale obraz się nie wyświetla wtedy :)
       <%= image_tag @book.image.variant(resize: "320x495") %> -->
 
-        <%= image_tag @book.image, style: "width:200px" if @book.image.attached?  %>
+      <%= image_tag @book.image, style: "width:200px" if @book.image.attached?  %>
     <% end %>
+
     <br>
     Autor: <%= @book.author  %> <br>
     Cena wypożyczenia za 1 dzień: <%= @book.price %> zł<br><br>
 
-	<% unless @book.description.empty? %>
-	  Opis:  <%= @book.description %>
-	<% end %>
-	</p>	
+  	<% unless @book.description.empty? %>
+  	  Opis:  <%= @book.description %>
+  	<% end %>
+    <br><br>
+
+    <!-- Jeśli użytkownik jest zalogowany i nie wypożycza książki, to wyświetla się guzik do wypożyczenia książki. -->
+    <% if logged_in? && !current_user.borrowing?(@book)%>
+      <%= form_for(current_user.loans.build) do |f| %>
+        <div><%= hidden_field_tag :book_id, @book.id %></div>
+        <%= f.submit "Wypożycz", class: "btn btn-primary btn-sm" %>
+      <% end %>
+    <% end %>
+
+    <!-- Jeśli użytkownik jest zalogowany i wypożycza książkę, to wyświetla się guzik do oddania książki. -->
+    <% if logged_in? && current_user.borrowing?(@book)%>
+      <%= form_for(current_user.loans.find_by(book_id: @book.id),
+                                              html: { method: :delete }) do |f| %>
+      <%= f.submit "Zwróć książkę", class: "btn " %>
+      <% end %>  
+    <% end %>
+
+    <!-- Jeśli użytkownik jest zalogowany i jest adminem, to wyświetlają się guziki do usuwania i edytowania książki. -->
+    <% if logged_in? && current_user.admin? %>
+      <br>
+      <%= link_to "usuń", @book, method: :delete,
+                                 data: { confirm: "Jesteś pewien?" } %>   
+      | <%= link_to "edytuj", edit_book_path(@book) %>     
+    <% end %>
+  	</p>	
   </aside>
+
+  <!-- Jeśli użytkownik jest zalogowany i wypożycza książkę, to wyświetla się treść. -->
+  <% if logged_in? && current_user.borrowing?(@book)%>
+    <h1>
+      Treść książki:
+    </h1>
+    <%= @book.content  %>
+  <% end %> 
+
 </div>

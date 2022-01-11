@@ -3,9 +3,27 @@
   <aside class="col-md-4">
     <section class="user_info">
       <h1>
-        <%= @user.name %>
+        <%= @user.name %> 
       </h1>
-      Saldo: <%= @user.balance %>
+
+      <br>Saldo: <%= @user.balance %> 
+      <br>Wypożyczone książki (<%=@user.books.count%>):
+
+      <ul class="users">
+        <% @user.books.each do |book| %>
+          <li>
+          Tytuł:            <%= "\"#{book.title}\"" %><br>
+          Autor:            <%= book.author %><br>
+          Cena:             <%= book.price %>zł<br>
+          W posiadaniu od:  <%= current_user.loans.find_by(book_id: book.id).created_at %><br><br>
+          <%= link_to "Czytaj", book_path(book),class: "btn-success" %> <br><br>
+          <%= form_for(current_user.loans.find_by(book_id: book.id),
+                                                  html: { method: :delete }) do |f| %>
+          <%= f.submit "Zwróć książkę", class: "btn " %>
+          <% end %>
+          </li>
+        <% end %>
+      </ul>
     </section>
   </aside>
 </div>

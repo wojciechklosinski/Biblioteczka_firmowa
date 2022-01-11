@@ -80,4 +80,14 @@ class UserTest < ActiveSupport::TestCase
   test "authenticated? should return false for a user with nil digest" do
     assert_not @user.authenticated?('')
   end
+
+  test "should borrow and return a book" do
+    user = users(:michael)
+    book = books(:biblia)
+    assert_not user.borrowing?(book)
+    user.borrow(book)
+    assert user.borrowing?(book)
+    user.return(book)
+    assert_not user.borrowing?(book)
+  end
 end

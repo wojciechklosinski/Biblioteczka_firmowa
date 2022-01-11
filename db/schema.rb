@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_10_084404) do
+ActiveRecord::Schema.define(version: 2022_01_10_193008) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -51,6 +51,15 @@ ActiveRecord::Schema.define(version: 2022_01_10_084404) do
     t.index ["author"], name: "index_books_on_author"
     t.index ["price"], name: "index_books_on_price"
     t.index ["title"], name: "index_books_on_title", unique: true
+  end
+
+  create_table "loans", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "book_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "book_id"], name: "index_loans_on_user_id_and_book_id", unique: true
+    t.index ["user_id"], name: "index_loans_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  has_many :loans, dependent: :destroy
+  has_many :books, through: :loans
+
   attr_accessor :remember_token
 
   before_save { self.email = email.downcase }
@@ -59,5 +62,21 @@ class User < ApplicationRecord
   #change balance value back to 0
   def reset_balance
     update_attribute(:balance, 0)
+  end
+
+
+  # Check if user have the book in his library
+  def borrowing?(book)
+    books.include?(book)
+  end
+
+  # Borrow the book, add to user library
+  def borrow(book)
+    loans.create(book_id: book.id)
+  end
+
+  # Return the book, delete from library
+  def return(book)
+    loans.find_by(book_id: book.id).destroy
   end
 end

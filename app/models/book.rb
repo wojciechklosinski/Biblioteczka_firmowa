@@ -1,4 +1,7 @@
 class Book < ApplicationRecord
+  has_many :loans, dependent: :destroy
+  has_many :users, through: :loans
+
   has_one_attached :image
 
   validates :author, presence: true, length: { maximum: 50 }

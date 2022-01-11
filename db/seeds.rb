@@ -25,6 +25,8 @@ User.create!(name:  "Example User",
              admin: true,
              balance: 20)
 
+
+# Generate a bunch of additional books.
 99.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
@@ -35,3 +37,9 @@ User.create!(name:  "Example User",
                password_confirmation: password,
                balance: 10)
 end
+
+# Loans
+books = Book.all
+user  = User.first
+borrowed = books[2..20]
+borrowed.each { |borrowed| user.borrow(borrowed) }

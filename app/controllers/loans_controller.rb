@@ -5,6 +5,7 @@ class LoansController < ApplicationController
   	forwarding_url = session[:forwarding_url]  
   	book = Book.find(params[:book_id])
     current_user.borrow(book)
+    flash[:success] = "Wypożyczono książkę"
     redirect_to book
   end
 
@@ -13,6 +14,7 @@ class LoansController < ApplicationController
   	book = Loan.find(params[:id]).book
   	current_user.update_balance(book)
   	current_user.return(book)
+  	flash[:success] = "Oddano książkę"
   	redirect_to current_user
   end
 end

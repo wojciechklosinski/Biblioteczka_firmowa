@@ -84,16 +84,16 @@ class User < ApplicationRecord
     new_balance = self.balance + loan_price(book)
     update_attribute(:balance, new_balance)
   end
-  
-  def loan_length (book)
-    if self.borrowing?(book)
-      1+(Time.zone.now.to_date - self.loans.find_by(book_id: book.id).created_at.to_date).to_i
-    end
-  end
 
   def loan_price (book)
     if self.borrowing?(book)
       book.price * loan_length(book)
+    end
+  end
+
+  def loan_length (book)
+    if self.borrowing?(book)
+      1+(Time.zone.now.to_date - self.loans.find_by(book_id: book.id).created_at.to_date).to_i
     end
   end
 end

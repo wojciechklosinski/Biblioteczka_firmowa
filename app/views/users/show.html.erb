@@ -15,7 +15,8 @@
           Tytuł:            <%= "\"#{book.title}\"" %><br>
           Autor:            <%= book.author %><br>
           Cena:             <%= book.price %>zł<br>
-          W posiadaniu od:  <%= current_user.loans.find_by(book_id: book.id).created_at %><br><br>
+          Dni posiadania książki: <%= current_user.loan_length(book) %> <br>
+          Po oddaniu konto zostanie obciążone kwotą: <%= current_user.loan_price(book) %>zł<br><br>
           <%= link_to "Czytaj", book_path(book),class: "btn-success" %> <br><br>
           <%= form_for(current_user.loans.find_by(book_id: book.id),
                                                   html: { method: :delete }) do |f| %>

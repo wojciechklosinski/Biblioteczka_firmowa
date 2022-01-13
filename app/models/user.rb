@@ -64,7 +64,6 @@ class User < ApplicationRecord
     update_attribute(:balance, 0)
   end
 
-
   # Check if user have the book in his library
   def borrowing?(book)
     books.include?(book)
@@ -78,5 +77,23 @@ class User < ApplicationRecord
   # Return the book, delete from library
   def return(book)
     loans.find_by(book_id: book.id).destroy
+  end
+
+  #change balance value 
+  def update_balance(book) 
+    new_balance = self.balance + loan_price(book)
+    update_attribute(:balance, new_balance)
+  end
+  
+  def loan_length (book)
+    if self.borrowing?(book)
+      1+(Time.zone.now.to_date - self.loans.find_by(book_id: book.id).created_at.to_date).to_i
+    end
+  end
+
+  def loan_price (book)
+    if self.borrowing?(book)
+      book.price * loan_length(book)
+    end
   end
 end

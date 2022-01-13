@@ -13,6 +13,6 @@ class LoansController < ApplicationController
   	book = Loan.find(params[:id]).book
   	current_user.update_balance(book)
   	current_user.return(book)
-  	redirect_to current_userr
+  	redirect_to current_user
   end
 end

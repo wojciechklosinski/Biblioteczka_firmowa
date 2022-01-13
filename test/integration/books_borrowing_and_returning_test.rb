@@ -105,8 +105,12 @@ class BooksBorrowingAndReturningTest < ActionDispatch::IntegrationTest
     assert_select 'div.alert-success'
 
     loan = @non_admin.loans.find_by(book_id: @book2.id)
+
     assert_difference '@non_admin.books.count', -1 do
-      delete loan_path(loan)
+      assert_difference '@non_admin.balance', @book2.price do
+        delete loan_path(loan)
+        @non_admin.reload
+      end
     end
   end
 end

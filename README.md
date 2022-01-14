@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## O aplikacji
+Do aplikacji można się zalogować jako administrator lub jako zwykły użytkownik.
+Zalogowany użytkownik ma możliwość:
+- zobaczenia spisu książek (zakładka "Spis książek") możliwych do wypożyczenia, wraz ze szczegółami (okładka, opis),
+- wypożyczenia danej książki (po wypożyczeniu danej książki, użytkownik ma możliwość zobaczenia jej treści),
+- zwrotu książki (w momencie zwrotu dług użytkownika zostanie powiększony o iloczyn dni wypożyczenia książki oraz cenę książki),
+- sprawdzenia jakie książki aktualnie wypożycza (zakładka "Konto" -> "Profil"),
+- sprawdzenia hisotrii wypożyczonych książek. 
 
-Things you may want to cover:
+Ponadto, administrator może:
+- dodawać, edytować i usuwać książki,
+- resetować dług użytkowników (zakładka "Zarządzaj użytkownikami").
 
-* Ruby version
+Aplikacja umożliwia logowanie za pomocą konta Google.
 
-* System dependencies
+## Uruchomienie aplikacji
 
-* Configuration
+Aby uruchomić aplikację postępuj zgodnie z poniższą instrukcją.
 
-* Database creation
+1. 
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

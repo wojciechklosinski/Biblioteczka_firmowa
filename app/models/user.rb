@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :loans, dependent: :destroy
   has_many :books, through: :loans
+  has_many :historical_loans, dependent: :destroy
 
   attr_accessor :remember_token
 
@@ -76,6 +77,7 @@ class User < ApplicationRecord
 
   # Return the book, delete from library
   def return(book)
+    self.historical_loans.create(title: book.title, author: book.author, price: loan_price(book), borrow_time: loans.find_by(book_id: book.id).created_at )
     loans.find_by(book_id: book.id).destroy
   end
 

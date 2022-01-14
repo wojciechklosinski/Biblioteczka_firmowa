@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   resources :users  
   resources :books
   resources :loans, only: [:create, :destroy]
+  resources :historical_loans, only: [:index]
 end

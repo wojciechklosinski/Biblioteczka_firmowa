@@ -43,3 +43,14 @@ books = Book.all
 user  = User.first
 borrowed = books[2..20]
 borrowed.each { |borrowed| user.borrow(borrowed) }
+
+# Historical loans
+user = User.first
+50.times do
+  name  = Faker::Name.name
+  title = Faker::Lorem.words(number: rand(2..5)).join(' ')
+  user.historical_loans.create!(author:  name,
+                                title: title,
+                                borrow_time: Time.zone.now,
+                                price: 2)
+end

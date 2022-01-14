@@ -72,8 +72,10 @@ class BooksBorrowingAndReturningTest < ActionDispatch::IntegrationTest
 
     get books_path(order: 'title')
     loan = @admin.loans.find_by(book_id: @book2.id)
-    assert_difference '@admin.books.count', -1 do
-      delete loan_path(loan)
+    assert_difference '@admin.historical_loans.count', 1 do
+      assert_difference '@admin.books.count', -1 do
+        delete loan_path(loan)
+      end
     end
 
     #strona profilu

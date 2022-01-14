@@ -8,7 +8,7 @@
     <li>
       <%= user.name %><br>
       Saldo użytkownika: <%= user.balance %>zł <br>      
-      <%= link_to "Resetuj saldo", users_path(user_id: user.id),data: { confirm: "Jesteś pewien?" }  %>     
+      <%= link_to "Resetuj dług", users_path(user_id: user.id),data: { confirm: "Jesteś pewien?" }  %>     
     </li>
   <% end %>
 </ul>

@@ -1,9 +1,10 @@
-module SessionsHelper
+# frozen_string_literal: true
 
+module SessionsHelper
   # Confirms an admin user.
   def admin_user
     redirect_to(root_url) unless current_user.admin?
-  end  
+  end
 
   def correct_user
     @user = User.find(params[:id])
@@ -13,7 +14,7 @@ module SessionsHelper
   def logged_in_user
     unless logged_in?
       store_location
-      flash[:danger] = "Proszę się zalogować."
+      flash[:danger] = 'Proszę się zalogować.'
       redirect_to login_url
     end
   end
@@ -33,7 +34,7 @@ module SessionsHelper
       @current_user ||= user if session[:session_token] == user.session_token
     elsif (user_id = cookies.encrypted[:user_id])
       user = User.find_by(id: user_id)
-      if user && user.authenticated?(cookies[:remember_token])
+      if user&.authenticated?(cookies[:remember_token])
         log_in user
         @current_user = user
       end
@@ -53,7 +54,7 @@ module SessionsHelper
   # Returns true if the user is logged in, false otherwise.
   def logged_in?
     !current_user.nil?
-  end	
+  end
 
   # Forgets a persistent session.
   def forget(user)
@@ -67,7 +68,7 @@ module SessionsHelper
     forget(current_user)
     reset_session
     @current_user = nil
-  end 
+  end
 
   # Remembers a user in a persistent session.
   def remember(user)
@@ -75,5 +76,4 @@ module SessionsHelper
     cookies.permanent.encrypted[:user_id] = user.id
     cookies.permanent[:remember_token] = user.remember_token
   end
-
 end

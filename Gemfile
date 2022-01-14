@@ -6,20 +6,20 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
 
-gem 'omniauth-google-oauth2'
-gem 'dotenv-rails'
-gem 'omniauth'
-gem 'omniauth-rails_csrf_protection'
-gem 'faker',          '2.11.0'
-gem 'will_paginate',           '3.3.0'
 gem 'bootstrap-will_paginate', '1.0.0'
+gem 'dotenv-rails'
+gem 'faker', '2.11.0'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
+gem 'will_paginate',           '3.3.0'
 
 gem 'active_storage_validations'
-gem 'mini_magick'
 gem 'image_processing'
+gem 'mini_magick'
 
-gem 'bcrypt',         '3.1.13'
-gem 'bootsnap',   '1.7.2', require: false
+gem 'bcrypt', '3.1.13'
+gem 'bootsnap', '1.7.2', require: false
 gem 'bootstrap-sass', '3.4.1'
 gem 'jbuilder',   '2.10.0'
 gem 'puma',       '5.3.1'

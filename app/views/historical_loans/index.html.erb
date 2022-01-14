@@ -1,21 +1,20 @@
 <% provide(:title, 'Historia wypożyczeń') %>
 <h1>Historia wypożyczeń</h1>
 
-
 <% unless @loans.empty? %>
   <%= will_paginate @loans %>
 
-        <ol class="users">
-          <% @loans.each do |book| %>
-            <li>
-            Tytuł:            <%= "\"#{book.title}\"" %><br>
-            Autor:            <%= book.author %><br>
-            Koszt wypożyczenia:             <%= book.price %>zł<br>
-            Wypożyczono: <%= book.borrow_time.strftime("%F") %> <br>
-            Zwrócono: <%= book.created_at.strftime("%F") %><br><br>
-            </li>
-          <% end %>
-        </ol>
+    <ol class="users">
+      <% @loans.each do |book| %>
+        <li>
+        Tytuł:            <%= "\"#{book.title}\"" %><br>
+        Autor:            <%= book.author %><br>
+        Koszt wypożyczenia:             <%= book.price %>zł<br>
+        Wypożyczono: <%= book.borrow_time.strftime("%F") %> <br>
+        Zwrócono: <%= book.created_at.strftime("%F") %><br><br>
+        </li>
+      <% end %>
+    </ol>
 
   <%= will_paginate @loans %>
 <% else %>

@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-
-  #get 'sessions/new'
+  # get 'sessions/new'
   root   'static_pages#home'
 
   get    '/about',   to: 'static_pages#about'
   get    '/signup',  to: 'users#new'
-  get    '/add_book',  to: 'books#new'
+  get    '/add_book', to: 'books#new'
 
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
@@ -15,8 +14,8 @@ Rails.application.routes.draw do
 
   get '/auth/:provider/callback' => 'sessions#omniauth'
 
-  resources :users  
+  resources :users
   resources :books
-  resources :loans, only: [:create, :destroy]
+  resources :loans, only: %i[create destroy]
   resources :historical_loans, only: [:index]
 end

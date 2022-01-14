@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateLoans < ActiveRecord::Migration[6.1]
   def change
     create_table :loans do |t|
@@ -7,6 +9,6 @@ class CreateLoans < ActiveRecord::Migration[6.1]
       t.timestamps
     end
     add_index :loans, :user_id
-    add_index :loans, [:user_id, :book_id], unique: true
-  end 
+    add_index :loans, %i[user_id book_id], unique: true
+  end
 end

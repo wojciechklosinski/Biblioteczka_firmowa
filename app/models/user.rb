@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   has_many :loans, dependent: :destroy
   has_many :books, through: :loans
@@ -16,14 +18,17 @@ class User < ApplicationRecord
   has_secure_password
 
   # Returns the hash digest of the given string.
-  def User.digest(string)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                  BCrypt::Engine.cost
+  def self.digest(string)
+    cost = if ActiveModel::SecurePassword.min_cost
+             BCrypt::Engine::MIN_COST
+           else
+             BCrypt::Engine.cost
+           end
     BCrypt::Password.create(string, cost: cost)
   end
 
   # Returns a random token.
-  def User.new_token
+  def self.new_token
     SecureRandom.urlsafe_base64
   end
 
@@ -52,6 +57,7 @@ class User < ApplicationRecord
   # Returns true if the given token matches the digest.
   def authenticated?(remember_token)
     return false if remember_digest.nil?
+
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
 
@@ -60,7 +66,7 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
 
-  #change balance value back to 0
+  # Change balance value back to 0
   def reset_balance
     update_attribute(:balance, 0)
   end
@@ -75,27 +81,26 @@ class User < ApplicationRecord
     loans.create(book_id: book.id)
   end
 
-  # Return the book, delete from library
+  # Return the book, delete from loans and create new historical loan
   def return(book)
-    self.historical_loans.create(title: book.title, author: book.author, price: loan_price(book), borrow_time: loans.find_by(book_id: book.id).created_at )
+    historical_loans.create(title: book.title, author: book.author, price: loan_price(book),
+                            borrow_time: loans.find_by(book_id: book.id).created_at)
     loans.find_by(book_id: book.id).destroy
   end
 
-  #change balance value 
-  def update_balance(book) 
-    new_balance = self.balance + loan_price(book)
+  # Update balance value
+  def update_balance(book)
+    new_balance = balance + loan_price(book)
     update_attribute(:balance, new_balance)
   end
 
-  def loan_price (book)
-    if self.borrowing?(book)
-      book.price * loan_length(book)
-    end
+  # Return loan price
+  def loan_price(book)
+    book.price * loan_length(book) if borrowing?(book)
   end
 
-  def loan_length (book)
-    if self.borrowing?(book)
-      1+(Time.zone.now.to_date - self.loans.find_by(book_id: book.id).created_at.to_date).to_i
-    end
+  # Return loan length
+  def loan_length(book)
+    1 + (Time.zone.now.to_date - loans.find_by(book_id: book.id).created_at.to_date).to_i if borrowing?(book)
   end
 end

@@ -35,11 +35,7 @@ bundle install --without production
 Kolejnym krokiem jest stworzenia i migracja bazy danych oraz jej wstępne wypełnienie. Wpisz kolejne komendy:
 ```ruby
 rails db:create
-```
-```ruby
 rails db:migrate
-```
-```ruby
 rails db:seed
 ```
 Pozostało uruchomić serwer za pomocą komendy:

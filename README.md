@@ -32,7 +32,10 @@ Następnie wpisz poniższą komendę, aby zainstalować gems'y wymagane przez ap
 ```ruby
 bundle install --without production
 ```
-Kolejnym krokiem jest migracja bazy danych oraz jej wstępne wypełnienie. Wpisz kolejne komendy
+Kolejnym krokiem jest stworzenia i migracja bazy danych oraz jej wstępne wypełnienie. Wpisz kolejne komendy:
+```ruby
+rails db:create
+```
 ```ruby
 rails db:migrate
 ```
@@ -44,6 +47,7 @@ Pozostało uruchomić serwer za pomocą komendy:
 rails server
 ```
 Teraz, gdy w przeglądarce wpiszemy http://localhost:3000/, naszym oczom ukaże się aplikacja. 
+
 
 [Link do aplikacji](https://biblioteczka-firmowa-wojtek.herokuapp.com/)
 
